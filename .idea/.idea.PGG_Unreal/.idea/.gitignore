@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea.PGG_Unreal.iml
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+# Datasource local storage ignored files
+/../../../../../../../:\Github\Unreal_Procedural_Generation\PGG_Unreal\.idea\.idea.PGG_Unreal\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
