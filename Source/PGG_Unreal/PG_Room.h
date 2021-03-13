@@ -24,9 +24,21 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+	float squareWidth;
+	float gridHeight;
+	float roomLength;
+	float roomWidth;
+	float objectRadius;
+	int32 gridSizeX;
+	int32 gridSizeY;
+	FVector topLeft;
+	FVector bottomRight;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room", meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* Floor;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room", meta = (AllowPrivateAccess = "true"))
 		TSubclassOf<AActor> ObjectClass;
 	void SpawnObject(UClass* ObjectToSpawn);
+	void CreateGrid();
+	void PlacePointsOnGrid();
+	FVector GetRandomPointInSquare(const FVector& upperLeft, const FVector& lowerRight);
 };
