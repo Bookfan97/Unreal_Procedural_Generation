@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PG_Room.h"
-
+#include "FloorNode.h"
 #include "DrawDebugHelpers.h"
 
 // Sets default values
@@ -9,16 +9,6 @@ APG_Room::APG_Room()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	Floor = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FloorComponent"));
-	SetRootComponent(Floor);
-}
-
-// Called when the game starts or when spawned
-void APG_Room::BeginPlay()
-{
-	Super::BeginPlay();
-	
 	/*SpawnObject(ObjectClass);
 	SpawnObject(ObjectClass);
 	SpawnObject(ObjectClass);
@@ -32,8 +22,17 @@ void APG_Room::BeginPlay()
 	gridHeight=1.f;
 	roomLength=1000.f;
 	roomWidth = 1000.f;
+	Floor = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FloorComponent"));
+	SetRootComponent(Floor);
+}
+
+// Called when the game starts or when spawned
+void APG_Room::BeginPlay()
+{
+	Super::BeginPlay();
 	CreateGrid();
 	PlacePointsOnGrid();
+	TSharedPtr<FloorNode> NodePtr(new FloorNode());
 }
 
 // Called every frame
