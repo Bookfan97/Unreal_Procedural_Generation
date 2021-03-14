@@ -34,7 +34,7 @@ private:
 	FVector topLeft;
 	FVector bottomRight;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room", meta = (AllowPrivateAccess = "true"))
-		UStaticMeshComponent* Floor;
+		UStaticMeshComponent* FloorMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room", meta = (AllowPrivateAccess = "true"))
 		TSubclassOf<AActor> ObjectClass;
 	void SpawnObject(UClass* ObjectToSpawn);

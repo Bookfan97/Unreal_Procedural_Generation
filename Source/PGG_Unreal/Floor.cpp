@@ -1,12 +1,24 @@
 ﻿#include "Floor.h"
 
+#include "FloorNode.h"
+
 Floor::Floor()
 {
-	
+	floorGridSizeX = 5;
+	floorGridSizeY = 5;
+	roomMinX = 1;
+	roomMinY = 1;
 }
 
 void Floor::Partition()
 {
+	FCornerCoordinates CornerCoordinatesA = {0,0,floorGridSizeX, floorGridSizeY};
+	FloorNodes.Push(TSharedPtr<FloorNode>(new FloorNode(CornerCoordinatesA)));
+	while (FloorNodes.Num() > 0)
+	{
+		TSharedPtr<FloorNode> A = FloorNodes.Pop();
+		UE_LOG(LogTemp, Warning, TEXT("FLOOR NODE OFF STACK"));
+	}
 }
 
 int32 Floor::RandomBinaryValue()

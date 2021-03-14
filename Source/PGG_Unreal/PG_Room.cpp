@@ -3,6 +3,7 @@
 #include "PG_Room.h"
 #include "FloorNode.h"
 #include "DrawDebugHelpers.h"
+#include "Floor.h"
 
 // Sets default values
 APG_Room::APG_Room()
@@ -22,17 +23,20 @@ APG_Room::APG_Room()
 	gridHeight=1.f;
 	roomLength=1000.f;
 	roomWidth = 1000.f;
-	Floor = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FloorComponent"));
-	SetRootComponent(Floor);
+	FloorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FloorComponent"));
+	SetRootComponent(FloorMesh);
 }
 
 // Called when the game starts or when spawned
 void APG_Room::BeginPlay()
 {
 	Super::BeginPlay();
-	CreateGrid();
+	/*CreateGrid();
 	PlacePointsOnGrid();
 	TSharedPtr<FloorNode> NodePtr(new FloorNode());
+	UE_LOG(LogTemp, Warning, TEXT("ROOM NODES CREATED: %d"), FloorNode::GetNodeCount());*/
+	TSharedPtr<Floor> TheFloor(new Floor());
+	TheFloor->Partition();
 }
 
 // Called every frame

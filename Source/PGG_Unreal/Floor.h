@@ -25,7 +25,7 @@ private:
 	TArray<TSharedPtr<FloorNode>> FloorNodes;
 	TArray<TSharedPtr<FloorNode>> PartionedFloor;
 	
-	int32 floorGridSixeX;
+	int32 floorGridSizeX;
 	int32 floorGridSizeY;
 	int32 roomMinX;
 	int32 roomMinY;
