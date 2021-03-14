@@ -17,22 +17,66 @@ void Floor::Partition()
 	while (FloorNodes.Num() > 0)
 	{
 		TSharedPtr<FloorNode> A = FloorNodes.Pop();
-		UE_LOG(LogTemp, Warning, TEXT("FLOOR NODE OFF STACK"));
+		bool bNodeWasSplit = SplitAttempt(A);
+		if (bNodeWasSplit)
+		{
+			PartionedFloor.Push(A);
+		}
 	}
 }
 
 int32 Floor::RandomBinaryValue()
 {
-	return 3;
+	return FMath::RandRange(0,1);
 }
 
 bool Floor::ShouldSplitNode(TSharedPtr<FloorNode> InNode, ESplitOrientation Orientation)
 {
+	FCornerCoordinates CornerCoordinates = InNode->GetCornerCoordinates();
+	if (Orientation == ESplitOrientation::ESO_Horizontal)
+	{
+		int32 floorLength = CornerCoordinates.bottomRightY - CornerCoordinates.upperLeftY;
+		if (floorLength > roomMinY)
+		{
+			return true;
+		}
+	}
+	else if (Orientation == ESplitOrientation::ESO_Vertical)
+	{
+		int32 floorWidth = CornerCoordinates.bottomRightX - CornerCoordinates.upperLeftX;
+		if (floorWidth > roomMinX)
+		{
+			return true;
+		}
+	}
 	return false;
 }
 
 bool Floor::SplitAttempt(TSharedPtr<FloorNode> InNode)
 {
+	int32 HorizontalOrVertical = RandomBinaryValue();
+	if (HorizontalOrVertical == 0)
+	{
+		if (ShouldSplitNode(InNode, ESplitOrientation::ESO_Horizontal))
+		{
+			
+		}
+		else if (ShouldSplitNode(InNode, ESplitOrientation::ESO_Vertical))
+		{
+			
+		}
+	}
+	else
+	{
+		if (ShouldSplitNode(InNode, ESplitOrientation::ESO_Vertical))
+		{
+			
+		}
+		else if (ShouldSplitNode(InNode, ESplitOrientation::ESO_Horizontal))
+		{
+			
+		}
+	}
 	return false;
 }
 
